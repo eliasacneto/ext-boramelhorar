@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <title>Melhore o texto</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header>
+      <img src="icons/icon48.png" alt="" width="32" height="32" />
+      <h1>Melhore o texto</h1>
+    </header>
+
+    <form id="form">
+      <label>
+        Provedor
+        <select id="provider">
+          <option value="groq">Groq</option>
+          <option value="openai">OpenAI (GPT)</option>
+        </select>
+      </label>
+
+      <fieldset data-provider="groq">
+        <label>
+          Token do Groq
+          <input id="groqKey" type="password" placeholder="gsk_..." autocomplete="off" />
+        </label>
+        <label>
+          Modelo
+          <select id="groqModel"></select>
+        </label>
+        <small>Crie seu token em <a href="https://console.groq.com/keys" target="_blank">console.groq.com/keys</a></small>
+      </fieldset>
+
+      <fieldset data-provider="openai">
+        <label>
+          Token da OpenAI
+          <input id="openaiKey" type="password" placeholder="sk-..." autocomplete="off" />
+        </label>
+        <label>
+          Modelo
+          <select id="openaiModel"></select>
+        </label>
+        <small>Crie seu token em <a href="https://platform.openai.com/api-keys" target="_blank">platform.openai.com/api-keys</a></small>
+      </fieldset>
+
+      <label>
+        Estilo
+        <select id="style">
+          <option value="natural">Natural</option>
+          <option value="formal">Formal / profissional</option>
+          <option value="informal">Descontraído</option>
+          <option value="corrigir">Só corrigir erros</option>
+        </select>
+      </label>
+
+      <button type="submit">Salvar</button>
+      <p id="status" role="status"></p>
+    </form>
+
+    <footer>Desenvolvido por <strong>AllyTech</strong></footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

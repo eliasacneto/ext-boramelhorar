@@ -1,0 +1,74 @@
+.mt-improve-btn {
+  position: fixed;
+  z-index: 9999;
+  width: 34px;
+  height: 34px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.mt-improve-btn.mt-visible {
+  display: flex;
+}
+
+.mt-improve-btn:hover:not(:disabled) {
+  transform: scale(1.08);
+}
+
+.mt-improve-btn:disabled {
+  cursor: progress;
+  opacity: 0.85;
+}
+
+.mt-spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: mt-spin 0.7s linear infinite;
+}
+
+@keyframes mt-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mt-toast {
+  position: fixed;
+  z-index: 10000;
+  max-width: 420px;
+  display: none;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: #202c33;
+  color: #e9edef;
+  font: 14px/1.4 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
+}
+
+.mt-toast.mt-visible {
+  display: flex;
+}
+
+.mt-toast button {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  color: #25d366;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
