@@ -50,8 +50,34 @@ label {
   font-weight: 600;
 }
 
+details {
+  padding: 10px;
+  border: 1px solid #e3e6e8;
+  border-radius: 8px;
+}
+
+details[open] {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+summary {
+  font-weight: 600;
+  cursor: pointer;
+}
+
+textarea {
+  resize: vertical;
+}
+
+#style:disabled {
+  opacity: 0.5;
+}
+
 input,
-select {
+select,
+textarea {
   padding: 8px;
   border: 1px solid #d1d7db;
   border-radius: 6px;
@@ -60,7 +86,8 @@ select {
 }
 
 input:focus,
-select:focus {
+select:focus,
+textarea:focus {
   outline: 2px solid #25d366;
   border-color: transparent;
 }

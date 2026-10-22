@@ -22,10 +22,12 @@ const STYLES = {
     "Apenas corrija ortografia, gramática e pontuação. Não mude o estilo nem as palavras além do necessário.",
 };
 
-function buildSystemPrompt(style) {
+function buildSystemPrompt(style, customPrompt) {
+  // O prompt personalizado (configurações avançadas) substitui o estilo escolhido.
+  const instruction = customPrompt?.trim() || STYLES[style] || STYLES.natural;
   return [
     "Você é um assistente que melhora mensagens escritas por um usuário.",
-    STYLES[style] || STYLES.natural,
+    instruction,
     "Regras:",
     "- Mantenha o mesmo idioma do texto original.",
     "- Preserve o sentido, nomes, números, links e emojis.",
@@ -42,6 +44,7 @@ async function improveText(text) {
     "groqModel",
     "openaiModel",
     "style",
+    "customPrompt",
   ]);
 
   const provider = settings.provider || "groq";
@@ -67,7 +70,7 @@ async function improveText(text) {
       model,
       temperature: 0.4,
       messages: [
-        { role: "system", content: buildSystemPrompt(settings.style) },
+        { role: "system", content: buildSystemPrompt(settings.style, settings.customPrompt) },
         { role: "user", content: text },
       ],
     }),

@@ -54,6 +54,22 @@
         </select>
       </label>
 
+      <details id="advanced">
+        <summary>Configurações avançadas</summary>
+        <label>
+          Prompt personalizado
+          <textarea
+            id="customPrompt"
+            rows="6"
+            placeholder="Ex.: Reescreva a mensagem de forma clara e objetiva, como um atendente educado da minha empresa. Use no máximo 3 frases."
+          ></textarea>
+        </label>
+        <small>
+          Quando preenchido, substitui o estilo escolhido acima. A IA continua respondendo
+          só com o texto final, no mesmo idioma da mensagem. Deixe em branco para usar o estilo.
+        </small>
+      </details>
+
       <button type="submit">Salvar</button>
       <p id="status" role="status"></p>
     </form>

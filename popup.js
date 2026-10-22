@@ -1,4 +1,12 @@
-const FIELDS = ["provider", "groqKey", "groqModel", "openaiKey", "openaiModel", "style"];
+const FIELDS = [
+  "provider",
+  "groqKey",
+  "groqModel",
+  "openaiKey",
+  "openaiModel",
+  "style",
+  "customPrompt",
+];
 
 // Modelos mostrados antes de consultar a API (ou se a consulta falhar).
 const PROVIDERS = {
@@ -74,9 +82,11 @@ async function loadModelsFromApi(provider) {
 async function load() {
   // Tokens ficam só neste navegador (storage.local, sem sincronizar).
   const saved = await chrome.storage.local.get(FIELDS);
-  ["provider", "groqKey", "openaiKey", "style"].forEach((key) => {
+  ["provider", "groqKey", "openaiKey", "style", "customPrompt"].forEach((key) => {
     if (saved[key]) $(key).value = saved[key];
   });
+  if (saved.customPrompt) $("advanced").open = true;
+  updateStyleState();
   for (const provider of Object.keys(PROVIDERS)) {
     const config = PROVIDERS[provider];
     fillModels(provider, config.defaults, saved[config.modelField]);
@@ -85,7 +95,13 @@ async function load() {
   showProviderFields();
 }
 
+// O prompt personalizado substitui o estilo, então o seletor fica desativado.
+function updateStyleState() {
+  $("style").disabled = $("customPrompt").value.trim().length > 0;
+}
+
 $("provider").addEventListener("change", showProviderFields);
+$("customPrompt").addEventListener("input", updateStyleState);
 Object.keys(PROVIDERS).forEach((provider) => {
   $(PROVIDERS[provider].keyField).addEventListener("change", () =>
     loadModelsFromApi(provider)
